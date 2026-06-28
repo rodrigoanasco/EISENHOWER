@@ -5,3 +5,36 @@
   @apply text-6xl font-extrabold text-center tracking-tight text-gray-900 mt-10 mb-6 drop-shadow-lg;
   text-shadow: 4px -1px 3px rgba(47, 44, 48, 0.459);
 }
+
+.page-description {
+  text-align: center;
+  font-size: larger;
+  margin-top: 2px;
+  margin-left: 10;
+  margin-right: 10;
+}
+
+.matrix {
+  @apply grid grid-cols-2 max-w-5xl mx-auto rounded-lg overflow-hidden;
+  border-width: 4;
+  margin: 30;
+}
+
+.quadrant {
+  @apply min-h-64 p-6;
+}
+
+.left-box {
+  @apply border-r-4 border-slate-800;
+}
+
+.top-box {
+  @apply border-b-4 border-slate-800;
+}
+
+.inside-box-titles {
+  text-align: center;
+  font-size: larger;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+}
