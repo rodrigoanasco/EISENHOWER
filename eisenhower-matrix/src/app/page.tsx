@@ -16,7 +16,6 @@ export default function Home() {
       </p>
       <Matrix />
       <AddTask />
-      <Task />
     </main>
   );
 }
