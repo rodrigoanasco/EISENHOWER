@@ -15,9 +15,8 @@
 }
 
 .matrix {
-  @apply grid grid-cols-2 max-w-5xl mx-auto rounded-lg overflow-hidden;
-  border-width: 4;
-  margin: 30;
+  @apply grid grid-cols-2 w-full max-w-5xl mx-auto my-8 rounded-lg overflow-hidden;
+  border-width: 4px;
 }
 
 .quadrant {
