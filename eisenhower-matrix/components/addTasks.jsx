@@ -1,21 +1,38 @@
-import React from "react";
+//Since it is a Next.js router project, you need to add this:
+"use client";
 
-const addTasks = () => {
+import React, { useState } from "react";
+import Task from "../elements/Task";
+
+const AddTasks = () => {
+  const [tasks, setTasks] = useState([]);
+
+  function taskSpawn() {
+    setTasks([...tasks, "Task Name"]);
+  }
+
   return (
-    <button
-      style={{
-        border: "2px solid black",
-        borderRadius: "8px",
-        padding: "10px",
-        minHeight: "20px",
-        marginLeft: "30px",
-        fontFamily: "Courier New, Courier, monospace",
-        fontWeight: "600",
-      }}
-    >
-      Click here to add a task
-    </button>
+    <>
+      <button
+        className="add-button"
+        style={{
+          border: "2px solid black",
+          borderRadius: "8px",
+          padding: "10px",
+          minHeight: "20px",
+          fontFamily: "Courier New, Courier, monospace",
+          fontWeight: "600",
+        }}
+        onClick={taskSpawn}
+      >
+        Click here to add a task
+      </button>
+
+      {tasks.map((task, index) => (
+        <Task key={index} />
+      ))}
+    </>
   );
 };
 
-export default addTasks;
+export default AddTasks;

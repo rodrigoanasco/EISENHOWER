@@ -37,3 +37,8 @@
   font-family: "Courier New", Courier, monospace;
   font-weight: 600;
 }
+.add-button {
+  display: block; /* This makes the button able to use automatic left/right margins */
+  width: fit-content; /* this keeps the button only as wide as its text/content */
+  margin: 30px auto; /* This measns 30px top/bottom, and auto left/right, the 'auto' part centers it */
+}
