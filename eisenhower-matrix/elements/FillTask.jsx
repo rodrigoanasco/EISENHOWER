@@ -6,7 +6,7 @@ const FillTask = ({ saveTask, closePopup, task }) => {
   //THESE ARE VARIABLES, CALLED "USESTATE VARIABLES"
   const [taskName, setTaskName] = useState(task?.taskName || "");
   const [description, setDescription] = useState(task?.description || "");
-  const [deadline, setDeadline] = useState(task?.description || "");
+  const [deadline, setDeadline] = useState(task?.deadline || "");
 
   /* 
   What is "event"? This is infromation React gives you when something happens,
@@ -136,7 +136,7 @@ const FillTask = ({ saveTask, closePopup, task }) => {
 
         <button type="submit">Save</button>
         <button type="button" onClick={closePopup}>
-          Cancel
+          Close
         </button>
       </form>
     </div>

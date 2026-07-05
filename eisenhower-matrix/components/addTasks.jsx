@@ -8,14 +8,21 @@ import FillTask from "../elements/FillTask";
 const AddTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   function taskSpawn() {
+    setSelectedTask(null);
     setShowForm(true);
   }
 
   function saveTask(newTask) {
     setTasks([...tasks, newTask]);
     setShowForm(false);
+  }
+
+  function openTask(task) {
+    setSelectedTask(task);
+    setShowForm(true);
   }
 
   return (
@@ -34,9 +41,16 @@ const AddTasks = () => {
       >
         Click here to add a task
       </button>
+      {showForm && (
+        <FillTask
+          task={selectedTask}
+          saveTask={saveTask}
+          closePopup={() => setShowForm(false)}
+        />
+      )}
 
       {tasks.map((task, index) => (
-        <Task key={index} />
+        <Task key={index} task={task} onClick={openTask} />
       ))}
     </>
   );
