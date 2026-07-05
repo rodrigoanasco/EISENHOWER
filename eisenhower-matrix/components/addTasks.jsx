@@ -3,12 +3,19 @@
 
 import React, { useState } from "react";
 import Task from "../elements/Task";
+import FillTask from "../elements/FillTask";
 
 const AddTasks = () => {
   const [tasks, setTasks] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   function taskSpawn() {
-    setTasks([...tasks, "Task Name"]);
+    setShowForm(true);
+  }
+
+  function saveTask(newTask) {
+    setTasks([...tasks, newTask]);
+    setShowForm(false);
   }
 
   return (

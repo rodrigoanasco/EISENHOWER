@@ -1,8 +1,6 @@
-import Image from "next/image";
 import React from "react";
 import Matrix from "../../components/matrix";
 import AddTask from "../../components/addTasks";
-import Task from "../../elements/Task";
 
 export default function Home() {
   return (

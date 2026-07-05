@@ -2,14 +2,25 @@
 
 import React, { useState } from "react";
 
-const FillTask = ({ closePopup }) => {
-  const [taskName, setTaskName] = useState("");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState("");
+const FillTask = ({ saveTask, closePopup, task }) => {
+  const [taskName, setTaskName] = useState(task?.taskName || "");
+  const [description, setDescription] = useState(task?.description || "");
+  const [deadline, setDeadline] = useState(task?.description || "");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    //This creates task object
+    saveTask({
+      taskName,
+      description,
+      deadline,
+    });
+  }
 
   return (
     <div className="popup-background">
-      <form className="popup-box">
+      <form className="popup-box" onSubmit={handleSubmit}>
         <h2>Edit Task</h2>
 
         <input
@@ -31,7 +42,7 @@ const FillTask = ({ closePopup }) => {
           onChange={(event) => setDeadline(event.target.value)}
         />
 
-        <button type="button">Save</button>
+        <button type="submit">Save</button>
         <button type="button" onClick={closePopup}>
           Cancel
         </button>

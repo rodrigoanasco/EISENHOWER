@@ -1,6 +1,6 @@
 import React from "react";
 
-const Task = () => {
+const Task = ({ task, onClick }) => {
   return (
     <button
       style={{
@@ -9,8 +9,9 @@ const Task = () => {
         padding: "10px",
         minHeight: "20px",
       }}
+      onClick={() => onClick(task)}
     >
-      Task Name
+      {task.taskName}
     </button>
   );
 };
