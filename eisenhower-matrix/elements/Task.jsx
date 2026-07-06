@@ -3,6 +3,7 @@ import React from "react";
 const Task = ({ task, onClick }) => {
   return (
     <button
+      className="task-button"
       style={{
         border: "2px solid black",
         borderRadius: "8px",

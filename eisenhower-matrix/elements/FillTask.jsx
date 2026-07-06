@@ -111,8 +111,12 @@ const FillTask = ({ saveTask, closePopup, task }) => {
   }
 
   return (
-    <div className="popup-background">
-      <form className="popup-box" onSubmit={handleSubmit}>
+    <div className="popup-background" onClick={closePopup}>
+      <form
+        className="popup-box"
+        onSubmit={handleSubmit}
+        onClick={(event) => event.stopPropagation()}
+      >
         <h2>Edit Task</h2>
 
         <input
