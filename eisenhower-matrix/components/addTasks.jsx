@@ -5,8 +5,7 @@ import React, { useState } from "react";
 import Task from "../elements/Task";
 import FillTask from "../elements/FillTask";
 
-const AddTasks = () => {
-  const [tasks, setTasks] = useState([]);
+const AddTasks = ({ tasks, setTasks }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 

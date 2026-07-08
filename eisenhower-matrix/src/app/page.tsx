@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Matrix from "../../components/matrix";
 import AddTask from "../../components/addTasks";
 
 export default function Home() {
+  const [tasks, setTasks] = useState([]);
+
   return (
     <main style={{ marginBottom: "40px" }}>
       <h1 className="main-title">Eisenhower Matrix</h1>
@@ -12,8 +16,8 @@ export default function Home() {
         <br />
         You can also add a description, deadline or even some steps to follow!
       </p>
-      <Matrix />
-      <AddTask />
+      <Matrix tasks={tasks} />
+      <AddTask tasks={tasks} setTasks={setTasks} />
     </main>
   );
 }

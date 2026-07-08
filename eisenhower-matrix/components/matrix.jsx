@@ -1,6 +1,7 @@
 import React from "react";
+import Task from "../elements/Task";
 
-const matrix = () => {
+const matrix = ({ tasks }) => {
   const quadrants = [
     { id: "do", title: "Do", classes: "left-box top-box" },
     { id: "schedule", title: "Schedule", classes: "top-box" },
@@ -16,6 +17,11 @@ const matrix = () => {
           className={`quadrant inside-box-titles ${quadrant.classes}`}
         >
           <h2>{quadrant.title}</h2>
+          {tasks
+            .filter((task) => task.quadrant === quadrant.id)
+            .map((task) => (
+              <Task key={task.id} task={task} onClick={() => onClick(task)} />
+            ))}
         </div>
       ))}
     </section>
