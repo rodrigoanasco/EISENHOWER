@@ -24,6 +24,12 @@ const AddTasks = ({ tasks, setTasks }) => {
     setShowForm(true);
   }
 
+  function deleteTask(taskId) {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+    setShowForm(false);
+    setSelectedTask(null);
+  }
+
   return (
     <>
       <button
@@ -45,6 +51,7 @@ const AddTasks = ({ tasks, setTasks }) => {
           task={selectedTask}
           saveTask={saveTask}
           closePopup={() => setShowForm(false)}
+          deleteTask={deleteTask}
         />
       )}
 

@@ -6,7 +6,7 @@ const matrix = ({ tasks }) => {
     { id: "do", title: "Do", classes: "left-box top-box" },
     { id: "schedule", title: "Schedule", classes: "top-box" },
     { id: "delegate", title: "Delegate", classes: "left-box" },
-    { id: "delete", title: "Delete", classes: "" },
+    { id: "delete", title: "Reserve", classes: "" },
   ];
 
   return (

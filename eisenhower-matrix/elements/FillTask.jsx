@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-const FillTask = ({ saveTask, closePopup, task }) => {
+const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
   //THESE ARE VARIABLES, CALLED "USESTATE VARIABLES"
   const [taskName, setTaskName] = useState(task?.taskName || "");
   const [description, setDescription] = useState(task?.description || "");
@@ -141,6 +141,12 @@ const FillTask = ({ saveTask, closePopup, task }) => {
         />
 
         <button type="submit">Save</button>
+        {task && (
+          <button type="button" onClick={() => deleteTask(task.id)}>
+            Delete Task
+          </button>
+        )}
+
         <button type="button" onClick={closePopup}>
           Close
         </button>
