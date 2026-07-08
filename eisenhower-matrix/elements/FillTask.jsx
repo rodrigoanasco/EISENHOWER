@@ -104,9 +104,11 @@ const FillTask = ({ saveTask, closePopup, task }) => {
       taskName = "Workout"
     */
     saveTask({
+      id: crypto.randomUUID(),
       taskName,
       description,
       deadline,
+      quadrant: null,
     });
   }
 
