@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
 
 const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
   //THESE ARE VARIABLES, CALLED "USESTATE VARIABLES"
   const [taskName, setTaskName] = useState(task?.taskName || "");
   const [description, setDescription] = useState(task?.description || "");
   const [deadline, setDeadline] = useState(task?.deadline || "");
-  const [taskQuadrant, setTaskQuadrant] = useState(task?.quadrant || null);
+  const [taskQuadrant, setTaskQuadrant] = useState(task?.quadrant || "");
 
   /* 
   What is "event"? This is infromation React gives you when something happens,
@@ -110,7 +109,7 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
       taskName,
       description,
       deadline,
-      quadrant,
+      quadrant: taskQuadrant,
     });
   }
 
@@ -142,17 +141,16 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
           onChange={(event) => setDeadline(event.target.value)}
         />
 
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Choose the Quadrant
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <select
+          value={taskQuadrant || ""}
+          onChange={(event) => setTaskQuadrant(event.target.value)}
+        >
+          <option value="">Choose the Quadrant</option>
+          <option value="do">Do — Urgent and Important</option>
+          <option value="schedule">Schedule — Important, Not Urgent</option>
+          <option value="delegate">Delegate — Urgent, Not Important</option>
+          <option value="delete">Reserve — Neither Urgent nor Important</option>
+        </select>
 
         <button type="submit">Save</button>
         {task && (
