@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
   //THESE ARE VARIABLES, CALLED "USESTATE VARIABLES"
   const [taskName, setTaskName] = useState(task?.taskName || "");
   const [description, setDescription] = useState(task?.description || "");
   const [deadline, setDeadline] = useState(task?.deadline || "");
+  const [taskQuadrant, setTaskQuadrant] = useState(task?.quadrant || null);
 
   /* 
   What is "event"? This is infromation React gives you when something happens,
@@ -108,7 +110,7 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
       taskName,
       description,
       deadline,
-      quadrant: null,
+      quadrant,
     });
   }
 
@@ -139,6 +141,18 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
           value={deadline}
           onChange={(event) => setDeadline(event.target.value)}
         />
+
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Choose the Quadrant
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
         <button type="submit">Save</button>
         {task && (
