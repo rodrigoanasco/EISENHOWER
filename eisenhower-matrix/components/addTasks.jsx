@@ -8,6 +8,8 @@ import FillTask from "../elements/FillTask";
 const AddTasks = ({ tasks, setTasks }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const toDoTasks = tasks.filter((task) => !task.completed);
+  const completedTasks = tasks.filter((task) => task.completed);
 
   function taskSpawn() {
     setSelectedTask(null);
@@ -36,7 +38,19 @@ const AddTasks = ({ tasks, setTasks }) => {
   }
 
   function deleteTask(taskId) {
-    setTasks(tasks.filter((task) => task.id !== taskId));
+    setTasks((currentTasks) =>
+      currentTasks.filter((task) => task.id !== taskId),
+    );
+    setShowForm(false);
+    setSelectedTask(null);
+  }
+
+  function completeTask(taskId) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: true } : task,
+      ),
+    );
     setShowForm(false);
     setSelectedTask(null);
   }
@@ -63,12 +77,43 @@ const AddTasks = ({ tasks, setTasks }) => {
           saveTask={saveTask}
           closePopup={() => setShowForm(false)}
           deleteTask={deleteTask}
+          completeTask={completeTask}
         />
       )}
 
-      {tasks.map((task) => (
-        <Task key={task.id} task={task} onClick={openTask} />
-      ))}
+      <section className="task-status-board" aria-label="Tasks by status">
+        <div className="task-status-section todo-section">
+          <div className="task-status-heading">
+            <h2>To Do</h2>
+            <span>{toDoTasks.length}</span>
+          </div>
+          <div className="task-status-list">
+            {toDoTasks.length > 0 ? (
+              toDoTasks.map((task) => (
+                <Task key={task.id} task={task} onClick={openTask} />
+              ))
+            ) : (
+              <p className="empty-task-list">Nothing left to do.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="task-status-section completed-section">
+          <div className="task-status-heading">
+            <h2>Completed</h2>
+            <span>{completedTasks.length}</span>
+          </div>
+          <div className="task-status-list completed-task-list">
+            {completedTasks.length > 0 ? (
+              completedTasks.map((task) => (
+                <Task key={task.id} task={task} onClick={openTask} />
+              ))
+            ) : (
+              <p className="empty-task-list">No completed tasks yet.</p>
+            )}
+          </div>
+        </div>
+      </section>
     </>
   );
 };

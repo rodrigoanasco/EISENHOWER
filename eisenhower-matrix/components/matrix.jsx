@@ -16,7 +16,9 @@ const matrix = ({ tasks }) => {
           <h2 className="quadrant-title">{quadrant.title}</h2>
           <div className="quadrant-task-list">
             {tasks
-              .filter((task) => task.quadrant === quadrant.id)
+              .filter(
+                (task) => !task.completed && task.quadrant === quadrant.id,
+              )
               .map((task) => (
                 <Task key={task.id} task={task} onClick={() => onClick(task)} />
               ))}

@@ -2,7 +2,13 @@
 
 import React, { useState } from "react";
 
-const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
+const FillTask = ({
+  saveTask,
+  closePopup,
+  task,
+  deleteTask,
+  completeTask,
+}) => {
   //THESE ARE VARIABLES, CALLED "USESTATE VARIABLES"
   const [taskName, setTaskName] = useState(task?.taskName || "");
   const [description, setDescription] = useState(task?.description || "");
@@ -114,6 +120,7 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
       description,
       deadline,
       quadrant: taskQuadrant,
+      completed: task?.completed ?? false,
     });
   }
 
@@ -184,8 +191,12 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
           )}
         </div>
 
-        {task && (
-          <button className="complete-task-button" type="button">
+        {task && !task.completed && (
+          <button
+            className="complete-task-button"
+            type="button"
+            onClick={() => completeTask(task.id)}
+          >
             Complete Task
           </button>
         )}
