@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "../elements/Task";
 
-const matrix = ({ tasks }) => {
+const Matrix = ({ tasks, onTaskClick }) => {
   const quadrants = [
     { id: "do", title: "Do", classes: "left-box top-box" },
     { id: "schedule", title: "Schedule", classes: "top-box" },
@@ -20,7 +20,7 @@ const matrix = ({ tasks }) => {
                 (task) => !task.completed && task.quadrant === quadrant.id,
               )
               .map((task) => (
-                <Task key={task.id} task={task} onClick={() => onClick(task)} />
+                <Task key={task.id} task={task} onClick={onTaskClick} />
               ))}
           </div>
         </div>
@@ -29,4 +29,4 @@ const matrix = ({ tasks }) => {
   );
 };
 
-export default matrix;
+export default Matrix;

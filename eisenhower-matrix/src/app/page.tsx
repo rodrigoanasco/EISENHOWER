@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Matrix from "../../components/matrix";
 import AddTask from "../../components/addTasks";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
         <br />
         You can also add a description, deadline or even some steps to follow!
       </p>
-      <Matrix tasks={tasks} />
       <AddTask tasks={tasks} setTasks={setTasks} />
     </main>
   );

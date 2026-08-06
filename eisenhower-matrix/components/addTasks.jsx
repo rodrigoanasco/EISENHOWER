@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Matrix from "./matrix";
 import Task from "../elements/Task";
 import FillTask from "../elements/FillTask";
 
@@ -97,6 +98,8 @@ const AddTasks = ({ tasks, setTasks }) => {
 
   return (
     <>
+      <Matrix tasks={tasks} onTaskClick={openTask} />
+
       <button
         className="add-button"
         style={{
