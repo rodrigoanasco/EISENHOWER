@@ -121,6 +121,7 @@ const FillTask = ({
       deadline,
       quadrant: taskQuadrant,
       completed: task?.completed ?? false,
+      completedAt: task?.completedAt ?? null,
     });
   }
 

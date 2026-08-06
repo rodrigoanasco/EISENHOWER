@@ -1,15 +1,52 @@
 //Since it is a Next.js router project, you need to add this:
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Task from "../elements/Task";
 import FillTask from "../elements/FillTask";
+
+function getWeekWindow(timestamp) {
+  const weekStart = new Date(timestamp);
+  weekStart.setHours(0, 0, 0, 0);
+  weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+
+  const nextWeekStart = new Date(weekStart);
+  nextWeekStart.setDate(weekStart.getDate() + 7);
+
+  return {
+    start: weekStart.getTime(),
+    end: nextWeekStart.getTime(),
+  };
+}
 
 const AddTasks = ({ tasks, setTasks }) => {
   const [showForm, setShowForm] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [currentTime, setCurrentTime] = useState(() => Date.now());
+  const currentWeek = getWeekWindow(currentTime);
   const toDoTasks = tasks.filter((task) => !task.completed);
-  const completedTasks = tasks.filter((task) => task.completed);
+  const completedTasks = tasks.filter((task) => {
+    if (!task.completed || !task.completedAt) {
+      return false;
+    }
+
+    const completedTime = new Date(task.completedAt).getTime();
+
+    return completedTime >= currentWeek.start && completedTime < currentWeek.end;
+  });
+
+  useEffect(() => {
+    const millisecondsUntilNextWeek = Math.max(
+      currentWeek.end - Date.now() + 100,
+      1000,
+    );
+    const rolloverTimer = window.setTimeout(
+      () => setCurrentTime(Date.now()),
+      millisecondsUntilNextWeek,
+    );
+
+    return () => window.clearTimeout(rolloverTimer);
+  }, [currentWeek.end]);
 
   function taskSpawn() {
     setSelectedTask(null);
@@ -46,11 +83,14 @@ const AddTasks = ({ tasks, setTasks }) => {
   }
 
   function completeTask(taskId) {
+    const completedAt = new Date().toISOString();
+
     setTasks((currentTasks) =>
       currentTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: true } : task,
+        task.id === taskId ? { ...task, completed: true, completedAt } : task,
       ),
     );
+    setCurrentTime(Date.now());
     setShowForm(false);
     setSelectedTask(null);
   }
