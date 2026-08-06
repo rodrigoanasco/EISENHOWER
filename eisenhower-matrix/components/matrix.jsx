@@ -12,16 +12,15 @@ const matrix = ({ tasks }) => {
   return (
     <section className="matrix">
       {quadrants.map((quadrant) => (
-        <div
-          key={quadrant.id}
-          className={`quadrant ${quadrant.classes}`}
-        >
+        <div key={quadrant.id} className={`quadrant ${quadrant.classes}`}>
           <h2 className="quadrant-title">{quadrant.title}</h2>
-          {tasks
-            .filter((task) => task.quadrant === quadrant.id)
-            .map((task) => (
-              <Task key={task.id} task={task} onClick={() => onClick(task)} />
-            ))}
+          <div className="quadrant-task-list">
+            {tasks
+              .filter((task) => task.quadrant === quadrant.id)
+              .map((task) => (
+                <Task key={task.id} task={task} onClick={() => onClick(task)} />
+              ))}
+          </div>
         </div>
       ))}
     </section>

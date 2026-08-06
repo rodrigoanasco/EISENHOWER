@@ -83,6 +83,21 @@ body {
   text-transform: uppercase;
 }
 
+.quadrant-task-list {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.quadrant-task-list .task-button {
+  flex: 0 1 auto;
+  margin: 0;
+}
+
 .add-button {
   display: block;
   width: fit-content;
@@ -250,5 +265,9 @@ body {
     margin-block: 5px;
     padding: 6px 10px;
     font-size: 0.8rem;
+  }
+
+  .quadrant-task-list {
+    gap: 6px;
   }
 }
