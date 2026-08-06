@@ -14,9 +14,9 @@ const matrix = ({ tasks }) => {
       {quadrants.map((quadrant) => (
         <div
           key={quadrant.id}
-          className={`quadrant inside-box-titles ${quadrant.classes}`}
+          className={`quadrant ${quadrant.classes}`}
         >
-          <h2>{quadrant.title}</h2>
+          <h2 className="quadrant-title">{quadrant.title}</h2>
           {tasks
             .filter((task) => task.quadrant === quadrant.id)
             .map((task) => (

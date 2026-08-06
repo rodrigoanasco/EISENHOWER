@@ -38,8 +38,9 @@ body {
 .quadrant {
   @apply min-h-64 p-6;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: white;
   text-shadow: 0 1px 10px rgba(31, 36, 34, 0.16);
 }
@@ -68,12 +69,18 @@ body {
   border-bottom: 2px solid rgba(255, 250, 246, 0.74);
 }
 
-.inside-box-titles {
+.quadrant-title {
+  width: 100%;
+  margin: 0 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.38);
   text-align: center;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .add-button {
@@ -209,5 +216,12 @@ body {
   .quadrant {
     min-height: 11rem;
     padding: 18px;
+  }
+
+  .quadrant-title {
+    margin-bottom: 16px;
+    padding-bottom: 11px;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
   }
 }
