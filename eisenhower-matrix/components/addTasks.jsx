@@ -98,6 +98,8 @@ const AddTasks = ({ tasks, setTasks }) => {
           </div>
         </div>
 
+        <div className="task-status-divider" aria-hidden="true" />
+
         <div className="task-status-section completed-section">
           <div className="task-status-heading">
             <h2>Completed</h2>
