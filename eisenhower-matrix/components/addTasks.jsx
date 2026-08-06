@@ -85,7 +85,6 @@ const AddTasks = ({ tasks, setTasks }) => {
         <div className="task-status-section todo-section">
           <div className="task-status-heading">
             <h2>To Do</h2>
-            <span>{toDoTasks.length}</span>
           </div>
           <div className="task-status-list">
             {toDoTasks.length > 0 ? (
@@ -98,12 +97,9 @@ const AddTasks = ({ tasks, setTasks }) => {
           </div>
         </div>
 
-        <div className="task-status-divider" aria-hidden="true" />
-
         <div className="task-status-section completed-section">
           <div className="task-status-heading">
             <h2>Completed</h2>
-            <span>{completedTasks.length}</span>
           </div>
           <div className="task-status-list completed-task-list">
             {completedTasks.length > 0 ? (
