@@ -1,10 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTask from "../../components/addTasks";
+import DesktopSettings from "../../components/DesktopSettings";
+
+const TASKS_STORAGE_KEY = "eisenhower-matrix-tasks";
+
+type Task = {
+  id: string;
+  taskName: string;
+  description: string;
+  deadline: string;
+  quadrant: string;
+  completed?: boolean;
+  completedAt?: string | null;
+};
 
 export default function Home() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksLoaded, setTasksLoaded] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedTasks = window.localStorage.getItem(TASKS_STORAGE_KEY);
+
+      if (savedTasks) {
+        const parsedTasks = JSON.parse(savedTasks);
+
+        if (Array.isArray(parsedTasks)) {
+          setTasks(parsedTasks as Task[]);
+        }
+      }
+    } catch (error) {
+      console.error("Could not load saved tasks.", error);
+    } finally {
+      setTasksLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!tasksLoaded) {
+      return;
+    }
+
+    window.localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks, tasksLoaded]);
 
   return (
     <main style={{ marginBottom: "40px" }}>
@@ -16,6 +56,7 @@ export default function Home() {
         You can also add a description, deadline or even some steps to follow!
       </p>
       <AddTask tasks={tasks} setTasks={setTasks} />
+      <DesktopSettings />
     </main>
   );
 }
