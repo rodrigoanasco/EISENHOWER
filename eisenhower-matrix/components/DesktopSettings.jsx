@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { isTauri } from "@tauri-apps/api/core";
 
-const AUTOSTART_PREFERENCE_KEY = "eisenhower-autostart-enabled";
+const AUTOSTART_PREFERENCE_KEY = "eisenhower-autostart-enabled-v2";
 
 async function getAutostartApi() {
   return import("@tauri-apps/plugin-autostart");
@@ -29,7 +29,7 @@ const DesktopSettings = () => {
         const savedPreference = window.localStorage.getItem(
           AUTOSTART_PREFERENCE_KEY,
         );
-        const shouldAutostart = savedPreference !== "false";
+        const shouldAutostart = savedPreference === "true";
         let currentlyEnabled = await isEnabled();
 
         if (shouldAutostart && !currentlyEnabled) {
