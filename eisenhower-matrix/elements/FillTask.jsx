@@ -37,6 +37,10 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
   function handleSubmit(event) {
     event.preventDefault();
 
+    if (!taskQuadrant) {
+      return;
+    }
+
     //This creates task object
 
     /* 
@@ -105,7 +109,7 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
       taskName = "Workout"
     */
     saveTask({
-      id: crypto.randomUUID(),
+      id: task?.id ?? crypto.randomUUID(),
       taskName,
       description,
       deadline,
@@ -142,10 +146,13 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
         />
 
         <select
-          value={taskQuadrant || ""}
+          value={taskQuadrant}
           onChange={(event) => setTaskQuadrant(event.target.value)}
+          required
         >
-          <option value="">Choose the Quadrant</option>
+          <option value="" disabled>
+            Choose the Quadrant
+          </option>
           <option value="do">Do — Urgent and Important</option>
           <option value="schedule">Schedule — Important, Not Urgent</option>
           <option value="delegate">Delegate — Urgent, Not Important</option>

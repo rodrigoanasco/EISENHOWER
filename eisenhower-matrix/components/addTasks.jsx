@@ -14,9 +14,20 @@ const AddTasks = ({ tasks, setTasks }) => {
     setShowForm(true);
   }
 
-  function saveTask(newTask) {
-    setTasks([...tasks, newTask]);
+  function saveTask(savedTask) {
+    setTasks((currentTasks) => {
+      const taskExists = currentTasks.some((task) => task.id === savedTask.id);
+
+      if (taskExists) {
+        return currentTasks.map((task) =>
+          task.id === savedTask.id ? savedTask : task,
+        );
+      }
+
+      return [...currentTasks, savedTask];
+    });
     setShowForm(false);
+    setSelectedTask(null);
   }
 
   function openTask(task) {
@@ -55,8 +66,8 @@ const AddTasks = ({ tasks, setTasks }) => {
         />
       )}
 
-      {tasks.map((task, index) => (
-        <Task key={index} task={task} onClick={openTask} />
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} onClick={openTask} />
       ))}
     </>
   );
