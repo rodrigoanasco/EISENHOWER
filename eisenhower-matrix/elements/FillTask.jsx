@@ -124,6 +124,16 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
         onSubmit={handleSubmit}
         onClick={(event) => event.stopPropagation()}
       >
+        <button
+          className="popup-close"
+          type="button"
+          aria-label="Close task editor"
+          title="Close"
+          onClick={closePopup}
+        >
+          &times;
+        </button>
+
         <h2>Edit Task</h2>
 
         <input
@@ -159,16 +169,26 @@ const FillTask = ({ saveTask, closePopup, task, deleteTask }) => {
           <option value="delete">Reserve — Neither Urgent nor Important</option>
         </select>
 
-        <button type="submit">Save</button>
+        <div className="task-form-actions">
+          <button className="save-task-button" type="submit">
+            Save Task
+          </button>
+          {task && (
+            <button
+              className="delete-task-button"
+              type="button"
+              onClick={() => deleteTask(task.id)}
+            >
+              Delete Task
+            </button>
+          )}
+        </div>
+
         {task && (
-          <button type="button" onClick={() => deleteTask(task.id)}>
-            Delete Task
+          <button className="complete-task-button" type="button">
+            Complete Task
           </button>
         )}
-
-        <button type="button" onClick={closePopup}>
-          Close
-        </button>
       </form>
     </div>
   );
